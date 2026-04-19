@@ -1,0 +1,88 @@
+{
+  "hash": "be3c3589",
+  "configHash": "9ce982d7",
+  "lockfileHash": "b125397b",
+  "browserHash": "c301f913",
+  "optimized": {
+    "react/jsx-dev-runtime": {
+      "src": "../../node_modules/react/jsx-dev-runtime.js",
+      "file": "react_jsx-dev-runtime.js",
+      "fileHash": "ae41236d",
+      "needsInterop": true
+    },
+    "react": {
+      "src": "../../node_modules/react/index.js",
+      "file": "react.js",
+      "fileHash": "f050c9bd",
+      "needsInterop": true
+    },
+    "react-dom/client": {
+      "src": "../../node_modules/react-dom/client.js",
+      "file": "react-dom_client.js",
+      "fileHash": "18361bd3",
+      "needsInterop": true
+    },
+    "lucide-react": {
+      "src": "../../node_modules/lucide-react/dist/esm/lucide-react.js",
+      "file": "lucide-react.js",
+      "fileHash": "273cdd36",
+      "needsInterop": false
+    },
+    "zustand": {
+      "src": "../../node_modules/zustand/esm/index.mjs",
+      "file": "zustand.js",
+      "fileHash": "c72c2f1e",
+      "needsInterop": false
+    },
+    "zustand/middleware": {
+      "src": "../../node_modules/zustand/esm/middleware.mjs",
+      "file": "zustand_middleware.js",
+      "fileHash": "18c87717",
+      "needsInterop": false
+    },
+    "uuid": {
+      "src": "../../node_modules/uuid/dist/index.js",
+      "file": "uuid.js",
+      "fileHash": "bb543792",
+      "needsInterop": false
+    },
+    "html-to-image": {
+      "src": "../../node_modules/html-to-image/es/index.js",
+      "file": "html-to-image.js",
+      "fileHash": "ae5067bb",
+      "needsInterop": false
+    },
+    "jspdf": {
+      "src": "../../node_modules/jspdf/dist/jspdf.es.min.js",
+      "file": "jspdf.js",
+      "fileHash": "d391fe14",
+      "needsInterop": false
+    },
+    "react-easy-crop": {
+      "src": "../../node_modules/react-easy-crop/index.module.mjs",
+      "file": "react-easy-crop.js",
+      "fileHash": "8935818f",
+      "needsInterop": false
+    }
+  },
+  "chunks": {
+    "html2canvas.esm-2FYPGI4K": {
+      "file": "html2canvas__esm-2FYPGI4K.js"
+    },
+    "purify.es-SIA7DM7H": {
+      "file": "purify__es-SIA7DM7H.js"
+    },
+    "index.es-KXIPY7A3": {
+      "file": "index__es-KXIPY7A3.js"
+    },
+    "chunk-SITVF2AJ": {
+      "file": "chunk-SITVF2AJ.js"
+    },
+    "chunk-RTMGKO7Z": {
+      "file": "chunk-RTMGKO7Z.js"
+    },
+    "chunk-DC5AMYBS": {
+      "file": "chunk-DC5AMYBS.js"
+    }
+  }
+}
