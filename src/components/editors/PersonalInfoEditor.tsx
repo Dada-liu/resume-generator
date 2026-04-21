@@ -100,6 +100,19 @@ export function PersonalInfoEditor() {
         )}
       </div>
 
+      {/* Show Avatar Toggle */}
+      <div className="flex items-center gap-2 mb-4">
+        <label className="flex items-center gap-2 cursor-pointer">
+          <input
+            type="checkbox"
+            checked={personalInfo.showAvatar !== false}
+            onChange={(e) => updatePersonalInfo({ ...personalInfo, showAvatar: e.target.checked })}
+            className="w-4 h-4 text-blue-500 rounded focus:ring-blue-500"
+          />
+          <span className="text-sm text-gray-600">在简历中显示头像</span>
+        </label>
+      </div>
+
       <div>
         <label className="block text-xs text-gray-500 mb-1">姓名</label>
         <input

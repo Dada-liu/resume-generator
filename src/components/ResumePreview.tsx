@@ -13,26 +13,27 @@ export const ResumePreview = forwardRef<HTMLDivElement>((_, ref: ForwardedRef<HT
         {/* Left Column - 1/3 */}
         <div className="w-1/3 absolute top-4 left-0 h-[calc(100%-32px)] pt-6 pb-6 rounded-r-lg flex flex-col">
           {/* Avatar - Outside gray background */}
-          <div className="mb-12 flex justify-center relative">
-            <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 h-10 bg-gray-200" />
-            <div className="relative">
-              
-              {resume.personalInfo.avatar ? (
-                <img
-                  src={resume.personalInfo.avatar}
-                  alt="头像"
-                  className="w-36 h-36 rounded-full object-cover mb-4"
-                />
-              ) : (
-                <div className="w-36 h-36 rounded-full bg-gray-200 flex items-center justify-center mb-4 outline-2 outline-gray-300">
-                  <span className="text-gray-400 text-2xl">照片</span>
-                </div>
-              )}
+          {resume.personalInfo.showAvatar !== false && (
+            <div className="mb-12 flex justify-center relative">
+              <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 h-10 bg-gray-200" />
+              <div className="relative">
+                {resume.personalInfo.avatar ? (
+                  <img
+                    src={resume.personalInfo.avatar}
+                    alt="头像"
+                    className="w-36 h-36 rounded-full object-cover mb-4"
+                  />
+                ) : (
+                  <div className="w-36 h-36 rounded-full bg-gray-200 flex items-center justify-center mb-4 outline-2 outline-gray-300">
+                    <span className="text-gray-400 text-2xl">照片</span>
+                  </div>
+                )}
+              </div>
             </div>
-          </div>
+          )}
 
           {/* Gray background for rest */}
-          <div className="bg-gray-100 p-4 pt-10 -mt-2 grow">
+          <div className={`bg-gray-100 p-4 pt-10 grow ${resume.personalInfo.showAvatar !== false ? '-mt-2' : 'mt-0'}`}>
 
             {/* Self Introduction */}
             {resume.selfIntroduction && (
