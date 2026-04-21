@@ -2,6 +2,13 @@
 
 一个简洁的在线简历编辑工具，支持实时预览、PDF 导出和数据持久化。
 
+线上地址：[链接](https://dada-liu.github.io/resume-generator/)
+
+效果如下：
+
+![](./websit-preview.png)
+
+
 ## 功能
 
 - **实时预览**：左侧实时显示简历效果
