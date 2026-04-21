@@ -39,3 +39,4 @@ npm run build
 2. 点击「保存」导出 JSON 备份
 3. 点击「导入」从 JSON 文件恢复
 4. 点击「导出 PDF」生成简历 PDF
+
