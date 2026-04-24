@@ -3,6 +3,7 @@ export interface PersonalInfo {
   jobTitle: string
   workYears?: string
   avatar?: string
+  showAvatar?: boolean
 }
 
 export interface Experience {
