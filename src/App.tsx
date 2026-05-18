@@ -1,16 +1,19 @@
-import { Download, RotateCcw, Save, Upload, Star } from 'lucide-react'
+import { Download, RotateCcw, Save, Upload, Star, LayoutTemplate, PanelRightClose, PanelRightOpen } from 'lucide-react'
 import { useRef, useCallback, useState, useEffect } from 'react'
 import { ResumePreview } from './components/ResumePreview'
 import { EditorPanel } from './components/EditorPanel'
+import { CustomSelect } from './components/CustomSelect'
 import { useResumeStore } from './stores/resumeStore'
 import { exportPdf } from './utils/exportPdf'
 import type { ResumeData } from './types/resume'
+import { templates } from './templates'
 
 function App() {
-  const { resume, resetResume, setResume } = useResumeStore()
+  const { resume, resetResume, setResume, selectedTemplate, setSelectedTemplate } = useResumeStore()
   const previewRef = useRef<HTMLDivElement>(null)
   const fileInputRef = useRef<HTMLInputElement>(null)
   const [stars, setStars] = useState<number | null>(null)
+  const [editorOpen, setEditorOpen] = useState(true)
 
   const GITHUB_URL = 'https://github.com/Dada-liu/resume-generator'
 
@@ -80,17 +83,19 @@ function App() {
   return (
     <div className="h-screen flex flex-col">
       {/* Header */}
-      <header className="h-14 bg-white border-b flex items-center justify-between px-4">
-        <h1 className="text-lg font-semibold text-gray-800 flex items-center gap-2">
-          简历编辑器
+      <header className="min-h-14 bg-white border-b flex flex-wrap items-center justify-between gap-x-4 gap-y-2 px-3 py-2 md:px-4">
+        <div className="flex items-center gap-2 flex-wrap">
+          <h1 className="text-base md:text-lg font-semibold text-gray-800 whitespace-nowrap">
+            简历编辑器
+          </h1>
           <a
             href={GITHUB_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-1 px-2 py-0.5 rounded-full bg-gray-100 text-gray-500 hover:bg-gray-200 transition-colors"
+            className="flex items-center gap-0.5 md:gap-1 px-1.5 md:px-2 py-0.5 rounded-full bg-gray-100 text-gray-500 hover:bg-gray-200 transition-colors"
           >
             <svg
-              className="w-4 h-4"
+              className="w-3.5 h-3.5 md:w-4 md:h-4"
               viewBox="0 0 24 24"
               fill="currentColor"
               xmlns="http://www.w3.org/2000/svg"
@@ -99,26 +104,36 @@ function App() {
             </svg>
             {stars !== null && (
               <>
-                <Star className="w-4 h-4" />
-                <span className="text-sm font-medium">{stars}</span>
+                <Star className="w-3.5 h-3.5 md:w-4 md:h-4" />
+                <span className="text-xs md:text-sm font-medium">{stars}</span>
               </>
             )}
           </a>
-        </h1>
-        <div className="flex gap-2">
+          <div className="flex items-center gap-1 md:gap-1.5">
+            <LayoutTemplate className="hidden sm:block w-3.5 h-3.5 md:w-4 md:h-4 text-gray-400" />
+            <span className="text-xs md:text-sm text-gray-500 hidden sm:inline">简历模板</span>
+            <CustomSelect
+              options={templates.map((t) => ({ value: t.id, label: t.name }))}
+              value={selectedTemplate}
+              onChange={setSelectedTemplate}
+            />
+          </div>
+        </div>
+
+        <div className="flex gap-1 md:gap-2">
           <button
             onClick={handleSave}
-            className="flex items-center gap-2 px-3 py-1.5 text-sm text-gray-600 hover:bg-gray-100 rounded-lg"
+            className="flex items-center gap-1.5 md:gap-2 p-1.5 md:px-3 md:py-1.5 text-sm text-gray-600 hover:bg-gray-100 rounded-lg"
           >
             <Save className="w-4 h-4" />
-            保存
+            <span className="hidden md:inline">保存</span>
           </button>
           <button
             onClick={handleImport}
-            className="flex items-center gap-2 px-3 py-1.5 text-sm text-gray-600 hover:bg-gray-100 rounded-lg"
+            className="flex items-center gap-1.5 md:gap-2 p-1.5 md:px-3 md:py-1.5 text-sm text-gray-600 hover:bg-gray-100 rounded-lg"
           >
             <Upload className="w-4 h-4" />
-            导入
+            <span className="hidden md:inline">导入</span>
           </button>
           <input
             ref={fileInputRef}
@@ -129,25 +144,45 @@ function App() {
           />
           <button
             onClick={resetResume}
-            className="flex items-center gap-2 px-3 py-1.5 text-sm text-gray-600 hover:bg-gray-100 rounded-lg"
+            className="flex items-center gap-1.5 md:gap-2 p-1.5 md:px-3 md:py-1.5 text-sm text-gray-600 hover:bg-gray-100 rounded-lg"
           >
             <RotateCcw className="w-4 h-4" />
-            重置
+            <span className="hidden md:inline">重置</span>
           </button>
           <button
             onClick={handleExport}
-            className="flex items-center gap-2 px-3 py-1.5 text-sm bg-blue-500 text-white rounded-lg hover:bg-blue-600"
+            className="flex items-center gap-1.5 md:gap-2 p-1.5 md:px-3 md:py-1.5 text-sm bg-blue-500 text-white rounded-lg hover:bg-blue-600"
           >
             <Download className="w-4 h-4" />
-            导出 PDF
+            <span className="hidden md:inline">导出 PDF</span>
           </button>
         </div>
       </header>
 
       {/* Main Content */}
-      <div className="flex-1 flex overflow-hidden">
+      <div className="flex-1 flex overflow-hidden relative">
         <ResumePreview ref={previewRef} />
-        <EditorPanel />
+        {editorOpen ? (
+          <div className="relative">
+            <button
+              onClick={() => setEditorOpen(false)}
+              className="absolute top-2 -left-9 z-10 p-1.5 bg-white border border-gray-200 rounded-l-lg hover:bg-gray-50 text-gray-400 hover:text-gray-600 transition-colors shadow-sm"
+              title="收起编辑区"
+            >
+              <PanelRightClose className="w-4 h-4" />
+            </button>
+            <EditorPanel />
+          </div>
+        ) : (
+          <button
+            onClick={() => setEditorOpen(true)}
+            className="absolute top-2 right-2 z-10 flex items-center gap-1.5 px-3 py-2 bg-white border border-gray-200 rounded-lg hover:bg-gray-50 text-gray-500 hover:text-gray-700 transition-colors shadow-sm"
+            title="打开编辑区"
+          >
+            <PanelRightOpen className="w-4 h-4" />
+            <span className="text-sm hidden sm:inline">编辑</span>
+          </button>
+        )}
       </div>
     </div>
   )

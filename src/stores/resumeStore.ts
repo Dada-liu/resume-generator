@@ -2,6 +2,7 @@ import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 import { v4 as uuidv4 } from 'uuid'
 import type { ResumeData, EditorType, Experience, Education, Skill, Project, Contact } from '../types/resume'
+import type { TemplateId } from '../types/template'
 
 const defaultResume: ResumeData = {
   personalInfo: {
@@ -53,7 +54,9 @@ const defaultResume: ResumeData = {
 interface ResumeState {
   resume: ResumeData
   activeEditor: EditorType
+  selectedTemplate: TemplateId
   setActiveEditor: (editor: EditorType) => void
+  setSelectedTemplate: (templateId: TemplateId) => void
   updatePersonalInfo: (info: ResumeData['personalInfo']) => void
   updateSelfIntroduction: (intro: string) => void
   addExperience: () => void
@@ -80,8 +83,10 @@ export const useResumeStore = create<ResumeState>()(
     (set) => ({
       resume: defaultResume,
       activeEditor: null,
+      selectedTemplate: 'classic',
 
       setActiveEditor: (editor) => set({ activeEditor: editor }),
+      setSelectedTemplate: (templateId) => set({ selectedTemplate: templateId }),
 
       updatePersonalInfo: (info) =>
         set((state) => ({
