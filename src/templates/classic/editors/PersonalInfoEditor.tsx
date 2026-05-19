@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react'
-import { useResumeStore } from '../../stores/resumeStore'
+import { useResumeStore } from '../../../stores/resumeStore'
 import { AvatarCropper } from './AvatarCropper'
 
 export function PersonalInfoEditor() {

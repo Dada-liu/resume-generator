@@ -1,11 +1,14 @@
 import type { ResumeTemplate } from '../types/template'
 import { ClassicTemplate } from './classic/ClassicTemplate'
+import { classicDefaultResume, classicEditorModules } from './classic/resumeConfig'
 
 export const templates: ResumeTemplate[] = [
   {
     id: 'classic',
     name: '经典模板',
     component: ClassicTemplate,
+    defaultResume: classicDefaultResume,
+    editorModules: classicEditorModules,
   },
 ]
 

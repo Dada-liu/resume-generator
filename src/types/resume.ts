@@ -53,5 +53,3 @@ export interface ResumeData {
   projects: Project[]
   contacts: Contact[]
 }
-
-export type EditorType = 'personalInfo' | 'summary' | 'experience' | 'education' | 'skills' | 'projects' | 'contact' | null

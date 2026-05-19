@@ -1,61 +1,28 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 import { v4 as uuidv4 } from 'uuid'
-import type { ResumeData, EditorType, Experience, Education, Skill, Project, Contact } from '../types/resume'
+import type { ResumeData, Experience, Education, Skill, Project, Contact } from '../types/resume'
 import type { TemplateId } from '../types/template'
+import { getTemplateById } from '../templates'
 
-const defaultResume: ResumeData = {
+const fallbackResume: ResumeData = {
   personalInfo: {
-    name: '张三',
-    jobTitle: '前端工程师',
-    workYears: '3年',
+    name: '',
+    jobTitle: '',
   },
-  selfIntroduction: '热爱前端开发，熟练使用 React、Vue 等主流框架，有丰富的项目实践经验。',
-  experiences: [
-    {
-      id: uuidv4(),
-      period: '2022.03 - 至今',
-      company: '某互联网公司',
-      position: '前端工程师',
-      responsibilities: ['负责公司核心产品前端开发', '参与技术架构设计与优化'],
-    },
-  ],
-  educations: [
-    {
-      id: uuidv4(),
-      school: '某某大学',
-      degree: '本科',
-      major: '计算机科学与技术',
-      period: '2018.09 - 2022.06',
-    },
-  ],
-  skills: [
-    { id: uuidv4(), name: 'React', description: '熟练掌握' },
-    { id: uuidv4(), name: 'TypeScript', description: '熟练掌握' },
-    { id: uuidv4(), name: 'Node.js', description: '熟练掌握' },
-  ],
-  projects: [
-    {
-      id: uuidv4(),
-      name: '在线简历编辑器',
-      period: '2024.01 - 2024.03',
-      role: '前端负责人',
-      description: '一个所见即所得的简历编辑器',
-      details: '使用 React + TypeScript 开发，支持实时预览、PDF 导出等功能',
-      technologies: ['React', 'TypeScript', 'Tailwind CSS'],
-    },
-  ],
-  contacts: [
-    { id: uuidv4(), platform: 'Email', value: 'zhangsan@example.com' },
-    { id: uuidv4(), platform: 'Phone', value: '138****8888' },
-  ],
+  selfIntroduction: '',
+  experiences: [],
+  educations: [],
+  skills: [],
+  projects: [],
+  contacts: [],
 }
 
 interface ResumeState {
   resume: ResumeData
-  activeEditor: EditorType
+  activeEditor: string | null
   selectedTemplate: TemplateId
-  setActiveEditor: (editor: EditorType) => void
+  setActiveEditor: (editor: string | null) => void
   setSelectedTemplate: (templateId: TemplateId) => void
   updatePersonalInfo: (info: ResumeData['personalInfo']) => void
   updateSelfIntroduction: (intro: string) => void
@@ -81,12 +48,20 @@ interface ResumeState {
 export const useResumeStore = create<ResumeState>()(
   persist(
     (set) => ({
-      resume: defaultResume,
+      resume: fallbackResume,
       activeEditor: null,
       selectedTemplate: 'classic',
 
       setActiveEditor: (editor) => set({ activeEditor: editor }),
-      setSelectedTemplate: (templateId) => set({ selectedTemplate: templateId }),
+
+      setSelectedTemplate: (templateId) => {
+        const template = getTemplateById(templateId)
+        set({
+          selectedTemplate: templateId,
+          resume: template?.defaultResume ?? fallbackResume,
+          activeEditor: null,
+        })
+      },
 
       updatePersonalInfo: (info) =>
         set((state) => ({
@@ -264,7 +239,12 @@ export const useResumeStore = create<ResumeState>()(
         })),
 
       setResume: (resume) => set({ resume }),
-      resetResume: () => set({ resume: defaultResume }),
+
+      resetResume: () =>
+        set((state) => {
+          const template = getTemplateById(state.selectedTemplate)
+          return { resume: template?.defaultResume ?? fallbackResume }
+        }),
     }),
     {
       name: 'resume-storage',
