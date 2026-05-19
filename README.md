@@ -62,3 +62,4 @@ npm run build
 4. 多套模版可选；（将 简历模板图片 -> html 应用 提炼成 skill，批量生成）
 
 有设计感的简历：https://itunes.apple.com/cn/app/id741292507?l=en&mt=8
+一个优秀的简历编辑应用：https://www.qrientresume.com/zh
