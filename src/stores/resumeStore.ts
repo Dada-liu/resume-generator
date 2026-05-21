@@ -9,6 +9,8 @@ const fallbackResume: ResumeData = {
   personalInfo: {
     name: '',
     jobTitle: '',
+    showAvatar: true,
+    avatarShape: 'circle',
   },
   selfIntroduction: '',
   experiences: [],

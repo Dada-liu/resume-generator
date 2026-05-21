@@ -45,6 +45,8 @@ export function PersonalInfoEditor() {
       jobTitle: formData.get('jobTitle') as string,
       workYears: formData.get('workYears') as string,
       avatar: personalInfo.avatar,
+      showAvatar: personalInfo.showAvatar,
+      avatarShape: personalInfo.avatarShape,
     })
     setActiveEditor(null)
   }
