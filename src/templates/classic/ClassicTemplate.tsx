@@ -3,7 +3,7 @@ import type { ResumeData } from '../../types/resume'
 
 export const ClassicTemplate: FC<{ data: ResumeData }> = ({ data }) => {
   return (
-    <div className="bg-white w-[210mm] min-h-[297mm] shadow-lg p-8 text-sm relative">
+    <>
       {/* Left Column - 1/3 */}
       <div className="w-1/3 absolute top-4 left-0 h-[calc(100%-32px)] pt-6 pb-6 rounded-r-lg flex flex-col">
         {/* Avatar */}
@@ -198,6 +198,6 @@ export const ClassicTemplate: FC<{ data: ResumeData }> = ({ data }) => {
           </section>
         )}
       </div>
-    </div>
+    </>
   )
 }

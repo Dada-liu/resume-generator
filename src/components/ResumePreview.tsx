@@ -1,6 +1,7 @@
 import { forwardRef, type ForwardedRef, useState, useEffect, useRef, useCallback } from 'react'
 import { useResumeStore } from '../stores/resumeStore'
 import { getTemplateById } from '../templates'
+import { ResumePaper } from './ResumePaper'
 
 const RESUME_WIDTH = 794
 
@@ -53,7 +54,9 @@ export const ResumePreview = forwardRef<HTMLDivElement>((_, ref: ForwardedRef<HT
           }
         >
           <div ref={ref}>
-            <TemplateComponent data={resume} />
+            <ResumePaper>
+              <TemplateComponent data={resume} />
+            </ResumePaper>
           </div>
         </div>
       </div>
