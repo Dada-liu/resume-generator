@@ -14,6 +14,7 @@ export const classicDefaultResume: ResumeData = {
     name: '张三',
     jobTitle: '前端工程师',
     workYears: '3年',
+    avatarShape: 'circle',
   },
   selfIntroduction: '热爱前端开发，熟练使用 React、Vue 等主流框架，有丰富的项目实践经验。',
   experiences: [

@@ -15,10 +15,10 @@ export const ClassicTemplate: FC<{ data: ResumeData }> = ({ data }) => {
                 <img
                   src={data.personalInfo.avatar}
                   alt="头像"
-                  className="w-36 h-36 rounded-full object-cover mb-4"
+                  className={`w-36 h-36 object-cover mb-4 ${data.personalInfo.avatarShape === 'circle' ? 'rounded-full' : 'rounded-lg'}`}
                 />
               ) : (
-                <div className="w-36 h-36 rounded-full bg-gray-200 flex items-center justify-center mb-4 outline-2 outline-gray-300">
+                <div className={`w-36 h-36 flex items-center justify-center mb-4 outline-2 outline-gray-300 ${data.personalInfo.avatarShape === 'circle' ? 'rounded-full bg-gray-200' : 'rounded-lg bg-gray-200'}`}>
                   <span className="text-gray-400 text-2xl">照片</span>
                 </div>
               )}

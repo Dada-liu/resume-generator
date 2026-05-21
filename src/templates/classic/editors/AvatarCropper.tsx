@@ -5,9 +5,10 @@ interface AvatarCropperProps {
   image: string
   onCropComplete: (croppedImage: string) => void
   onCancel: () => void
+  cropShape?: 'round' | 'rect'
 }
 
-export function AvatarCropper({ image, onCropComplete, onCancel }: AvatarCropperProps) {
+export function AvatarCropper({ image, onCropComplete, onCancel, cropShape = 'round' }: AvatarCropperProps) {
   const [crop, setCrop] = useState({ x: 0, y: 0 })
   const [zoom, setZoom] = useState(1.5)
   const [croppedAreaPixels, setCroppedAreaPixels] = useState<any>(null)
@@ -65,7 +66,7 @@ export function AvatarCropper({ image, onCropComplete, onCancel }: AvatarCropper
           crop={crop}
           zoom={zoom}
           aspect={1}
-          cropShape="round"
+          cropShape={cropShape}
           showGrid={false}
           onCropChange={onCropChange}
           onZoomChange={onZoomChange}

@@ -4,6 +4,7 @@ export interface PersonalInfo {
   workYears?: string
   avatar?: string
   showAvatar?: boolean
+  avatarShape?: 'circle' | 'square'
 }
 
 export interface Experience {
