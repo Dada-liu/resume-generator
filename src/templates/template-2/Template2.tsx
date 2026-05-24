@@ -4,11 +4,6 @@ import type { ResumeData } from '../../types/resume'
 export const Template2: FC<{ data: ResumeData }> = ({ data }) => {
   return (
     <div className="w-full h-full bg-white p-8 font-sans">
-      {/* 个人简历标题 */}
-      <div className="text-center mb-6 pb-2 border-b border-gray-300">
-        <h1 className="text-xl font-bold text-gray-800">个人简历</h1>
-      </div>
-
       {/* 个人信息模块 */}
       <div className="flex justify-between mb-6">
         {/* 个人信息表格 */}
@@ -58,11 +53,11 @@ export const Template2: FC<{ data: ResumeData }> = ({ data }) => {
               <img
                 src={data.personalInfo.avatar}
                 alt="头像"
-                className={`w-16 h-16 object-cover ${data.personalInfo.avatarShape === 'circle' ? 'rounded-full' : 'rounded-none'}`}
+                className={`w-42 h-50 object-cover ${data.personalInfo.avatarShape === 'circle' ? 'rounded-full' : 'rounded-none'}`}
               />
             ) : (
-              <div className={`w-16 h-16 flex items-center justify-center ${data.personalInfo.avatarShape === 'circle' ? 'rounded-full bg-gray-200' : 'bg-gray-200'}`}>
-                <span className="text-gray-400 text-xs">照片</span>
+              <div className={`w-42 h-50 flex items-center justify-center ${data.personalInfo.avatarShape === 'circle' ? 'rounded-full bg-gray-200' : 'bg-gray-200'}`}>
+                <span className="text-gray-400 text-sm">照片</span>
               </div>
             )}
           </div>

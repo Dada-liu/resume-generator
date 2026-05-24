@@ -48,6 +48,34 @@ npm run build
 4. 点击「导出 PDF」生成简历 PDF
 
 
+## Claude Code Skill
+
+### `/create-new-resume-template`
+
+通过一张简历模板图片，自动生成一个新的简历模板（包含预览组件、编辑组件、配置等），并注册到模板列表中。
+
+**使用方式：**
+
+```
+/create-new-resume-template <template-name> <image-path>
+```
+
+**参数：**
+- `template-name`：新模板的名称，使用 kebab-case 格式（如 `template-3`）
+- `image-path`：简历模板图片的路径
+
+**示例：**
+
+```
+/create-new-resume-template template-3 @src/assets/resume-template3.png
+```
+
+**工作流程：**
+1. 分析图片，提取布局、样式和模块结构，生成设计文档
+2. 校验设计文档，确保描述完整准确（需人工确认）
+3. 按设计文档实现模板预览组件和编辑组件
+4. 在浏览器中验证新模板的布局、样式和功能
+
 ## 竞品分析
 
 1. WPS 有简历模板 --- 收费，简历模板丰富，适合普通人写简历
