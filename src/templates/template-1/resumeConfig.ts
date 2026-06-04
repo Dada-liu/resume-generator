@@ -43,17 +43,6 @@ export const template1DefaultResume: ResumeData = {
         '协助解决生产环境的技术问题',
       ],
     },
-    {
-      id: 'default-exp-3',
-      period: '2019.03 - 2020.02',
-      company: '某创业公司',
-      position: '实习生',
-      responsibilities: [
-        '协助完成公司官网和产品页面的开发',
-        '参与项目的代码重构和优化',
-        '学习并使用新的技术栈',
-      ],
-    },
   ],
   educations: [
     {

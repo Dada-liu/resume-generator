@@ -44,18 +44,6 @@ export const template2DefaultResume: ResumeData = {
         '参与代码审查和技术分享',
       ],
     },
-    {
-      id: 'default-exp-3',
-      period: '2019.03 - 2021.01',
-      company: '某创业公司',
-      position: '初级软件工程师',
-      responsibilities: [
-        '参与公司产品的开发和测试',
-        '编写和维护技术文档',
-        '学习和掌握新的技术',
-        '协助解决客户问题',
-      ],
-    },
   ],
   educations: [
     {

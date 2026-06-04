@@ -4,6 +4,10 @@
 
 线上地址：[链接](https://dada-liu.github.io/resume-generator/)
 
+相关文章：
+1. [一张图 → 完整应用：我用 ClaudeCode 复刻了这个开发流程](https://dada-liu.github.io/#blog/ai-assisted-development)
+2. [使用 ClaudeCode 开发第二弹：进阶技巧与国内最佳大模型](https://dada-liu.github.io/#blog/claude-code-advanced)
+
 效果如下：
 
 ![](./websit-preview.png)
