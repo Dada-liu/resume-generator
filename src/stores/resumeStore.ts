@@ -50,7 +50,7 @@ interface ResumeState {
 export const useResumeStore = create<ResumeState>()(
   persist(
     (set) => ({
-      resume: fallbackResume,
+      resume: getTemplateById('classic')?.defaultResume ?? fallbackResume,
       activeEditor: null,
       selectedTemplate: 'classic',
 
