@@ -1,5 +1,5 @@
 import { Plus, Trash2 } from 'lucide-react'
-import { useResumeStore } from '../../stores/resumeStore'
+import { useResumeStore } from '../../../stores/resumeStore'
 
 export function SkillsEditor() {
   const { resume, addSkill, updateSkill, deleteSkill, setActiveEditor } = useResumeStore()

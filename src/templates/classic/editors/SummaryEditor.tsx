@@ -1,4 +1,4 @@
-import { useResumeStore } from '../../stores/resumeStore'
+import { useResumeStore } from '../../../stores/resumeStore'
 
 export function SummaryEditor() {
   const { resume, updateSelfIntroduction, setActiveEditor } = useResumeStore()

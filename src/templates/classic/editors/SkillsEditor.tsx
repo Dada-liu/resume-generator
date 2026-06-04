@@ -1,40 +1,40 @@
 import { Plus, Trash2 } from 'lucide-react'
-import { useResumeStore } from '../../stores/resumeStore'
+import { useResumeStore } from '../../../stores/resumeStore'
 
-export function ContactEditor() {
-  const { resume, addContact, updateContact, deleteContact, setActiveEditor } = useResumeStore()
+export function SkillsEditor() {
+  const { resume, addSkill, updateSkill, deleteSkill, setActiveEditor } = useResumeStore()
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>, id: string) => {
     e.preventDefault()
     const formData = new FormData(e.currentTarget)
-    updateContact(id, {
+    updateSkill(id, {
       id,
-      platform: formData.get('platform') as string,
-      value: formData.get('value') as string,
+      name: formData.get('name') as string,
+      description: formData.get('description') as string,
     })
   }
 
   return (
     <div className="space-y-4">
-      {resume.contacts.map((contact) => (
-        <div key={contact.id} className="border rounded-lg p-3 bg-white">
-          <form onSubmit={(e) => handleSubmit(e, contact.id)} className="space-y-2">
+      {resume.skills.map((skill) => (
+        <div key={skill.id} className="border rounded-lg p-3 bg-white">
+          <form onSubmit={(e) => handleSubmit(e, skill.id)} className="space-y-2">
             <div>
-              <label className="block text-xs text-gray-500 mb-1">渠道</label>
+              <label className="block text-xs text-gray-500 mb-1">技能名称</label>
               <input
-                name="platform"
-                defaultValue={contact.platform}
+                name="name"
+                defaultValue={skill.name}
                 className="w-full px-3 py-2 border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-                placeholder="如: Email, Phone, GitHub"
+                placeholder="如: React"
               />
             </div>
             <div>
-              <label className="block text-xs text-gray-500 mb-1">联系方式</label>
+              <label className="block text-xs text-gray-500 mb-1">技能描述</label>
               <input
-                name="value"
-                defaultValue={contact.value}
+                name="description"
+                defaultValue={skill.description}
                 className="w-full px-3 py-2 border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-                placeholder="请输入联系方式"
+                placeholder="如: 精通、熟练、掌握、了解"
               />
             </div>
             <div className="flex gap-2">
@@ -46,7 +46,7 @@ export function ContactEditor() {
               </button>
               <button
                 type="button"
-                onClick={() => deleteContact(contact.id)}
+                onClick={() => deleteSkill(skill.id)}
                 className="px-3 py-2 border border-red-300 text-red-500 rounded-lg text-sm hover:bg-red-50"
               >
                 <Trash2 className="w-4 h-4" />
@@ -56,11 +56,11 @@ export function ContactEditor() {
         </div>
       ))}
       <button
-        onClick={addContact}
+        onClick={addSkill}
         className="w-full flex items-center justify-center gap-2 px-3 py-2 border border-dashed border-gray-300 rounded-lg text-sm text-gray-500 hover:border-blue-500 hover:text-blue-500"
       >
         <Plus className="w-4 h-4" />
-        添加联系方式
+        添加专业技能
       </button>
       <button
         onClick={() => setActiveEditor(null)}

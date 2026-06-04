@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react'
-import { useResumeStore } from '../../stores/resumeStore'
+import { useResumeStore } from '../../../stores/resumeStore'
 import { AvatarCropper } from './AvatarCropper'
 
 export function PersonalInfoEditor() {
@@ -45,6 +45,8 @@ export function PersonalInfoEditor() {
       jobTitle: formData.get('jobTitle') as string,
       workYears: formData.get('workYears') as string,
       avatar: personalInfo.avatar,
+      showAvatar: personalInfo.showAvatar,
+      avatarShape: personalInfo.avatarShape,
     })
     setActiveEditor(null)
   }
@@ -58,6 +60,7 @@ export function PersonalInfoEditor() {
           image={imageToCrop}
           onCropComplete={handleCropComplete}
           onCancel={handleCropCancel}
+          cropShape={personalInfo.avatarShape === 'circle' ? 'round' : 'rect'}
         />
       </div>
     )
@@ -100,17 +103,49 @@ export function PersonalInfoEditor() {
         )}
       </div>
 
-      {/* Show Avatar Toggle */}
-      <div className="flex items-center gap-2 mb-4">
-        <label className="flex items-center gap-2 cursor-pointer">
-          <input
-            type="checkbox"
-            checked={personalInfo.showAvatar !== false}
-            onChange={(e) => updatePersonalInfo({ ...personalInfo, showAvatar: e.target.checked })}
-            className="w-4 h-4 text-blue-500 rounded focus:ring-blue-500"
-          />
-          <span className="text-sm text-gray-600">在简历中显示头像</span>
-        </label>
+      {/* Avatar Settings */}
+      <div className="space-y-4 mb-4">
+        {/* Show Avatar Toggle */}
+        <div className="flex items-center gap-2">
+          <label className="flex items-center gap-2 cursor-pointer">
+            <input
+              type="checkbox"
+              checked={personalInfo.showAvatar !== false}
+              onChange={(e) => updatePersonalInfo({ ...personalInfo, showAvatar: e.target.checked })}
+              className="w-4 h-4 text-blue-500 rounded focus:ring-blue-500"
+            />
+            <span className="text-sm text-gray-600">在简历中显示头像</span>
+          </label>
+        </div>
+
+        {/* Avatar Shape Selection */}
+        <div>
+          <label className="block text-xs text-gray-500 mb-2">头像形状</label>
+          <div className="flex gap-4">
+            <label className="flex items-center gap-2 cursor-pointer">
+              <input
+                type="radio"
+                name="avatarShape"
+                value="circle"
+                checked={personalInfo.avatarShape === 'circle'}
+                onChange={(e) => updatePersonalInfo({ ...personalInfo, avatarShape: e.target.value as 'circle' })}
+                className="w-4 h-4 text-blue-500 focus:ring-blue-500"
+              />
+              <span className="text-sm text-gray-600">圆形</span>
+            </label>
+            <label className="flex items-center gap-2 cursor-pointer">
+              <input
+                type="radio"
+                name="avatarShape"
+                value="square"
+                checked={personalInfo.avatarShape === 'square'}
+                onChange={(e) => updatePersonalInfo({ ...personalInfo, avatarShape: e.target.value as 'square' })}
+                className="w-4 h-4 text-blue-500 focus:ring-blue-500"
+              />
+              <span className="text-sm text-gray-600">方形</span>
+            </label>
+          </div>
+        </div>
       </div>
 
       <div>

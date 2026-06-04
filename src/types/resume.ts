@@ -4,6 +4,7 @@ export interface PersonalInfo {
   workYears?: string
   avatar?: string
   showAvatar?: boolean
+  avatarShape?: 'circle' | 'square'
 }
 
 export interface Experience {
@@ -53,5 +54,3 @@ export interface ResumeData {
   projects: Project[]
   contacts: Contact[]
 }
-
-export type EditorType = 'personalInfo' | 'summary' | 'experience' | 'education' | 'skills' | 'projects' | 'contact' | null
